@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.7"?>
+<plugin>
+   <extension point="org.eclipse.ui.popupMenus">
+      <objectContribution id="org.pu.open.contribution" objectClass="org.eclipse.core.runtime.IAdaptable">
+         <menu label="Open"
+               path="additions"
+               icon="icon/easyexplore.gif"
+               id="org.pu.open.menu">
+            <separator name="group_open" />
+         </menu>
+         <action id="org.pu.open.openCommand" class="org.pu.open.actions.OpenShellAction"
+               enablesFor="1"
+               icon="icon/shell.gif"
+               label="Open Shell"
+               menubarPath="org.pu.open.menu/group_open"
+               tooltip="Open shell in this folder">
+         </action>
+         <action id="org.pu.open.openClassFolder" class="org.pu.open.actions.OpenClassFolderAction"
+               enablesFor="1"
+               icon="icon/jar.gif"
+               label="Open Class Folder"
+               menubarPath="org.pu.open.menu/group_open"
+               tooltip="Open class folder in this folder">
+         </action>
+         <action id="org.pu.open.openFolder"  class="org.pu.open.actions.OpenFolderAction"
+               enablesFor="1"
+               icon="icon/easyexplore.gif"
+               label="Open Folder"
+               menubarPath="additions"
+               tooltip="Open explorer in this folder">
+         </action>
+      </objectContribution>
+   </extension>
+   <extension point="org.eclipse.ui.preferencePages">
+      <page class="org.pu.open.preferences.OpenExternPreferencePage"
+            id="org.pu.open.preferences.OpenExternPreferencePage"
+            name="Open">
+      </page>
+   </extension>
+   <extension point="org.eclipse.core.runtime.preferences">
+      <initializer class="org.pu.open.preferences.PreferenceInitializer">
+      </initializer>
+   </extension>
+	<!--
+	<extension point="org.eclipse.ui.actionSets">
+      <actionSet id="org.pu.open.actionSet.toolbar" label="Open Tools" visible="true">
+         <action id="org.pu.open.openFolder"
+               class="org.pu.open.actions.OpenFolderAction"
+               enablesFor="1"
+               icon="icon/easyexplore.gif"
+               label="Open folder"
+               toolbarPath="additions"
+               tooltip="Open explorer in this folder">
+         </action>
+       </actionSet>
+   </extension>
+   -->
+</plugin>
