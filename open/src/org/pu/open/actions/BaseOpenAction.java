@@ -2,10 +2,6 @@ package org.pu.open.actions;
 
 import java.io.File;
 import java.net.URI;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
@@ -15,10 +11,8 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.PlatformObject;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.jdt.core.IClasspathEntry;
 import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IJavaProject;
-import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.jdt.internal.core.JarPackageFragmentRoot;
 import org.eclipse.jdt.internal.core.PackageFragment;
 import org.eclipse.jface.action.IAction;
@@ -48,62 +42,27 @@ public abstract class BaseOpenAction implements IObjectActionDelegate {
 	}
 
 	/**
-	 * @param selected
+	 * @param object
 	 * @return null if selected is null
 	 */
-	private File getSelectedFolder(Object selected) {
-		if (null == selected) return null;
+	private File getSelectedFolder(Object object) {
+		if (null == object) return null;
 		File directory = null;
-		if (selected instanceof IResource) {
-			directory = new File(((IResource) selected).getLocation().toOSString());
-		} else if (selected instanceof File) {
-			directory = (File) selected;
+		if (object instanceof IResource) {
+			directory = new File(((IResource) object).getLocation().toOSString());
+		} else if (object instanceof File) {
+			directory = (File) object;
 		}
-		if (selected instanceof IFile) {
+		if (object instanceof IFile) {
 			directory = directory.getParentFile();
 		}
-		if (selected instanceof File) {
+		if (object instanceof File) {
 			directory = directory.getParentFile();
 		}
 		if (directory !=null && !directory.isDirectory()){
 			directory = directory.getParentFile();
 		}
 		return directory;
-	}
-
-	/**
-	 * get the src and class output location mapping
-	 * @return map &ltString, List&ltString>> key is the output location, value is the src list
-	 */
-	protected Map<String, List<String>> getMapping(IJavaProject project) {
-		if (project == null) return null;
-		try {
-			String defaultOutput = project.getOutputLocation().toOSString();
-			System.out.println("defaultOutput = " + defaultOutput);
-			Map<String, List<String>> map = new HashMap<String, List<String>>();
-			IClasspathEntry[] entrys = project.getRawClasspath();
-			
-			for (IClasspathEntry entry : entrys) {
-				if (entry.getEntryKind() == IClasspathEntry.CPE_SOURCE) {
-					String src = entry.getPath().toOSString();
-					IPath path = entry.getOutputLocation();
-					String output = (path == null ? defaultOutput : path.toOSString());
-
-					System.out.println("src = " +src +"; output = " + output);
-					if (map.get(output) != null){
-						map.get(output).add(src);
-					} else {
-						List<String> list = new ArrayList<String>();
-						list.add(src);
-						map.put(output, list);
-					}
-				}
-			}
-			return map;
-		} catch (JavaModelException e) {
-			e.printStackTrace();
-		}
-		return null;
 	}
 
 	@SuppressWarnings("restriction")
@@ -147,10 +106,6 @@ public abstract class BaseOpenAction implements IObjectActionDelegate {
 	}
 
 	public void setActivePart(IAction action, IWorkbenchPart targetPart) {
-	}
-
-	public void setSelection(ISelection selection) {
-		this.selection = selection;
 	}
 
 	/**
