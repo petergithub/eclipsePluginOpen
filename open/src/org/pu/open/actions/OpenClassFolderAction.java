@@ -56,10 +56,10 @@ public class OpenClassFolderAction extends BaseOpenAction {
 						}
 					}
 				}
-				// return the default output location if didn't find in the map
-				String projectPath = new File(javaProject.getProject().getLocation().toOSString()).getParent();
-				return (projectPath + defaultClassFolder);
 			}
+			// return the default output location if didn't find in the map
+			String projectPath = new File(javaProject.getProject().getLocation().toOSString()).getParent();
+			return (projectPath + defaultClassFolder);
 		} catch (JavaModelException e) {
 			Activator.log(Status.INFO, "Unable to get class folder ", e);
 		}
