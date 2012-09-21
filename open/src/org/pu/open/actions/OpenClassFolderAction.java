@@ -50,6 +50,7 @@ public class OpenClassFolderAction extends BaseOpenAction {
 				List<String> srcs = map.get(output);
 				for (String src : srcs) {
 					if (filePath.contains(src)) {
+						filePath = filePath.replace(".java", ".class");
 						String classpath = filePath.replace(src, output);
 						if (new File(classpath).exists()) {
 							return classpath;

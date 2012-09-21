@@ -53,7 +53,7 @@ public abstract class BaseOpenAction implements IObjectActionDelegate {
 		} else if (object instanceof File) {
 			directory = (File) object;
 		}
-		if (object instanceof IFile) {
+		/*if (object instanceof IFile) {
 			directory = directory.getParentFile();
 		}
 		if (object instanceof File) {
@@ -61,7 +61,7 @@ public abstract class BaseOpenAction implements IObjectActionDelegate {
 		}
 		if (directory !=null && !directory.isDirectory()){
 			directory = directory.getParentFile();
-		}
+		}*/
 		return directory;
 	}
 
