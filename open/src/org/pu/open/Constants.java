@@ -1,7 +1,7 @@
-package org.pu.open.preferences;
+package org.pu.open;
 
 
-public class PreferenceConstants {
+public class Constants {
 
 	public static final String P_OPEN_SHELL = "open_extern_shell";
 	public static final String P_OPEN_FOLDER = "open_extern_folder";

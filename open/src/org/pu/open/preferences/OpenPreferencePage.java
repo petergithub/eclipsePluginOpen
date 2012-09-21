@@ -5,6 +5,7 @@ import org.eclipse.jface.preference.StringFieldEditor;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 import org.pu.open.Activator;
+import org.pu.open.Constants;
 
 /**
  * This class represents a preference page that
@@ -19,10 +20,10 @@ import org.pu.open.Activator;
  * preferences can be accessed directly via the preference store.
  */
 
-public class OpenExternPreferencePage extends FieldEditorPreferencePage
+public class OpenPreferencePage extends FieldEditorPreferencePage
 		implements IWorkbenchPreferencePage {
 
-	public OpenExternPreferencePage() {
+	public OpenPreferencePage() {
 		super(GRID);
 		setPreferenceStore(Activator.getDefault().getPreferenceStore());
 		setDescription("Open preference");
@@ -35,9 +36,9 @@ public class OpenExternPreferencePage extends FieldEditorPreferencePage
 	 * restore itself.
 	 */
 	public void createFieldEditors() {
-		addField(new StringFieldEditor(PreferenceConstants.P_OPEN_FOLDER,
+		addField(new StringFieldEditor(Constants.P_OPEN_FOLDER,
 				"Open folder(class) command:", getFieldEditorParent()));
-		addField(new StringFieldEditor(PreferenceConstants.P_OPEN_SHELL,
+		addField(new StringFieldEditor(Constants.P_OPEN_SHELL,
 				"Open shell command:", getFieldEditorParent()));
 	}
 

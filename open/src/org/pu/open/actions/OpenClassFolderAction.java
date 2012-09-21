@@ -18,7 +18,7 @@ import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.jface.action.IAction;
 import org.pu.open.Activator;
-import org.pu.open.preferences.PreferenceConstants;
+import org.pu.open.Constants;
 
 /**
  * @author Shang Pu
@@ -27,10 +27,10 @@ import org.pu.open.preferences.PreferenceConstants;
 public class OpenClassFolderAction extends BaseOpenAction {
 	
 	@Override
-	public void runAction(IAction action, String filePath) {
+	public void runAction(IAction action, File file) {
 		Activator plugin = Activator.getDefault();
-		String command = plugin.getPreferenceStore().getString(PreferenceConstants.P_OPEN_FOLDER);
-		String classFolderPath = getClassFolderPath(filePath);
+		String command = plugin.getPreferenceStore().getString(Constants.P_OPEN_FOLDER);
+		String classFolderPath = getClassFolderPath(file.getAbsolutePath());
 		plugin.execCommand(command, classFolderPath);
 	}
 

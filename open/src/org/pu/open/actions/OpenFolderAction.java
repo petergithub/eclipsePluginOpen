@@ -1,16 +1,17 @@
 package org.pu.open.actions;
 
+import java.io.File;
 
 import org.eclipse.jface.action.IAction;
 import org.pu.open.Activator;
-import org.pu.open.preferences.PreferenceConstants;
+import org.pu.open.Constants;
 
 public class OpenFolderAction extends BaseOpenAction {
 
 	@Override
-	public void runAction(IAction action, String filePath) {
+	public void runAction(IAction action, File file) {
 		Activator plugin = Activator.getDefault();
-		String commandOpenFolder = plugin.getPreferenceStore().getString(PreferenceConstants.P_OPEN_FOLDER);
-		plugin.execCommand(commandOpenFolder, filePath);
+		String commandOpenFolder = plugin.getPreferenceStore().getString(Constants.P_OPEN_FOLDER);
+		plugin.execCommand(commandOpenFolder, file.getAbsolutePath());
 	}
 }

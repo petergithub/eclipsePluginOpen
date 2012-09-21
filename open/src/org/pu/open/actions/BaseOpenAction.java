@@ -29,7 +29,7 @@ public abstract class BaseOpenAction implements IObjectActionDelegate {
 	protected Object selectedObject;
 	protected IJavaProject selectedProject;
 	
-	abstract public void runAction(IAction action, String filePath);
+	abstract public void runAction(IAction action, File file);
 
 	public void run(IAction action) {
 		selectedObject = getSelectedObject(selection);
@@ -38,7 +38,7 @@ public abstract class BaseOpenAction implements IObjectActionDelegate {
 			Activator.log(Status.INFO, "Unable to handle the path", null);
 			return;
 		}
-		runAction(action, file.getAbsolutePath());
+		runAction(action, file);
 	}
 
 	/**
