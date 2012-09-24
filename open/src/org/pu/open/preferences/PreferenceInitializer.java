@@ -1,12 +1,13 @@
 package org.pu.open.preferences;
 
 
+import java.io.File;
+
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.pu.open.Activator;
 import org.pu.open.Constants;
-import org.pu.open.Desktop;
-import org.pu.open.OS;
 
 /**
  * Class used to initialize default preference values.
@@ -21,37 +22,41 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
 	public void initializeDefaultPreferences() {
 		IPreferenceStore store = Activator.getDefault().getPreferenceStore();
 		store.setDefault(Constants.P_OPEN_FOLDER, getOpenFolderCommand());
+		store.setDefault(Constants.P_OPEN_FILE, getOpenFileCommand());
 		store.setDefault(Constants.P_OPEN_SHELL, getOpenShellCommand());
 	}
 
-	private String getOpenFolderCommand() {
-		Activator plugin = Activator.getDefault();
-		if (plugin.getOS() == OS.LINUX) {
-			if (plugin.getDesktop() == Desktop.GNOME) {
+	private String getOpenFileCommand() {
+		if (Platform.OS_LINUX.equals(Platform.getOS())) {
+			if (new File("/usr/bin/nautilus").exists()) {
 				return Constants.OPEN_FOLDER_LINUX_GNOME;
 			}
 
-			if (plugin.getDesktop() == Desktop.KDE) {
-				return Constants.OPEN_FOLDER_LINUX_KDE;
+		} else if (Platform.OS_WIN32.equals(Platform.getOS())) {
+			return Constants.OPEN_FILE_WINDOWS;
+		}
+		return "unknown";
+	}
+
+	private String getOpenFolderCommand() {
+		if (Platform.OS_LINUX.equals(Platform.getOS())) {
+			if (new File("/usr/bin/nautilus").exists()) {
+				return Constants.OPEN_FOLDER_LINUX_GNOME;
 			}
 
-		} else if (plugin.getOS() == OS.WINDOWS) {
+		} else if (Platform.OS_WIN32.equals(Platform.getOS())) {
 			return Constants.OPEN_FOLDER_WINDOWS;
 		}
 		return "unknown";
 	}
 
 	private String getOpenShellCommand() {
-		Activator plugin = Activator.getDefault();
-		if (plugin.getOS() == OS.LINUX) {
-			if (plugin.getDesktop() == Desktop.GNOME) {
+		if (Platform.OS_LINUX.equals(Platform.getOS())) {
+			if (new File("/usr/bin/gnome-terminal").exists()) {
 				return Constants.OPEN_SHELL_LINUX_GNOME;
 			}
 
-			if (plugin.getDesktop() == Desktop.KDE) {
-				return Constants.OPEN_SHELL_LINUX_KDE;
-			}
-		} else if (plugin.getOS() == OS.WINDOWS) {
+		} else if (Platform.OS_WIN32.equals(Platform.getOS())) {
 			return Constants.OPEN_SHELL_WINDOWS;
 		}
 

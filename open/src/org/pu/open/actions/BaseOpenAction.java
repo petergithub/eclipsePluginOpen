@@ -24,6 +24,7 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 import org.pu.open.Activator;
 
+@SuppressWarnings("restriction")
 public abstract class BaseOpenAction implements IObjectActionDelegate {
 	private ISelection selection;
 	protected Object selectedObject;
@@ -65,7 +66,6 @@ public abstract class BaseOpenAction implements IObjectActionDelegate {
 		return directory;
 	}
 
-	@SuppressWarnings("restriction")
 	public Object getSelectedObject(ISelection selection) {
 		Object object = null;
 		try {

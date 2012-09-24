@@ -29,7 +29,12 @@ public class OpenClassFolderAction extends BaseOpenAction {
 	@Override
 	public void runAction(IAction action, File file) {
 		Activator plugin = Activator.getDefault();
-		String command = plugin.getPreferenceStore().getString(Constants.P_OPEN_FOLDER);
+		String command;
+		if (file.isDirectory()) {
+			command = plugin.getPreferenceStore().getString(Constants.P_OPEN_FOLDER);
+		} else {
+			command = plugin.getPreferenceStore().getString(Constants.P_OPEN_FILE);
+		}
 		String classFolderPath = getClassFolderPath(file.getAbsolutePath());
 		plugin.execCommand(command, classFolderPath);
 	}

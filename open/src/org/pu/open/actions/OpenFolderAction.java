@@ -11,7 +11,12 @@ public class OpenFolderAction extends BaseOpenAction {
 	@Override
 	public void runAction(IAction action, File file) {
 		Activator plugin = Activator.getDefault();
-		String commandOpenFolder = plugin.getPreferenceStore().getString(Constants.P_OPEN_FOLDER);
-		plugin.execCommand(commandOpenFolder, file.getAbsolutePath());
+		String command;
+		if (file.isDirectory()) {
+			command = plugin.getPreferenceStore().getString(Constants.P_OPEN_FOLDER);
+		} else {
+			command = plugin.getPreferenceStore().getString(Constants.P_OPEN_FILE);
+		}
+		plugin.execCommand(command, file.getAbsolutePath());
 	}
 }
