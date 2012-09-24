@@ -24,7 +24,7 @@ import org.pu.open.Constants;
  * @author Shang Pu
  * @version Date: Sep 8, 2012 9:52:41 PM
  */
-public class OpenClassFolderAction extends BaseOpenAction {
+public class OpenClassAction extends BaseOpenAction {
 	
 	@Override
 	public void runAction(IAction action, File file) {

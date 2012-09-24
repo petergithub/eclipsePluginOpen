@@ -16,14 +16,14 @@
                menubarPath="org.pu.open.menu/group_open"
                tooltip="Open shell in this folder">
          </action>
-         <action id="org.pu.open.openClassFolder" class="org.pu.open.actions.OpenClassFolderAction"
+         <action id="org.pu.open.openClassFolder" class="org.pu.open.actions.OpenClassAction"
                enablesFor="1"
                icon="icon/jar.gif"
                label="Open Class Folder"
                menubarPath="org.pu.open.menu/group_open"
                tooltip="Open class folder in this folder">
          </action>
-         <action id="org.pu.open.openFolder"  class="org.pu.open.actions.OpenFolderAction"
+         <action id="org.pu.open.openFolder"  class="org.pu.open.actions.OpenAction"
                enablesFor="1"
                icon="icon/easyexplore.gif"
                label="Open Folder"
@@ -46,7 +46,7 @@
 	<extension point="org.eclipse.ui.actionSets">
       <actionSet id="org.pu.open.actionSet.toolbar" label="Open Tools" visible="true">
          <action id="org.pu.open.openFolder"
-               class="org.pu.open.actions.OpenFolderAction"
+               class="org.pu.open.actions.OpenAction"
                enablesFor="1"
                icon="icon/easyexplore.gif"
                label="Open folder"

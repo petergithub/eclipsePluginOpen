@@ -6,7 +6,7 @@ import org.eclipse.jface.action.IAction;
 import org.pu.open.Activator;
 import org.pu.open.Constants;
 
-public class OpenFolderAction extends BaseOpenAction {
+public class OpenAction extends BaseOpenAction {
 
 	@Override
 	public void runAction(IAction action, File file) {
