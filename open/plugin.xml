@@ -33,8 +33,8 @@
       </objectContribution>
    </extension>
    <extension point="org.eclipse.ui.preferencePages">
-      <page class="org.pu.open.preferences.OpenExternPreferencePage"
-            id="org.pu.open.preferences.OpenExternPreferencePage"
+      <page class="org.pu.open.preferences.OpenPreferencePage"
+            id="org.pu.open.preferences.OpenPreferencePage"
             name="Open">
       </page>
    </extension>
