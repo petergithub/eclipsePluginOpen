@@ -1,5 +1,6 @@
 package org.pu.open;
 
+import java.io.File;
 import java.text.MessageFormat;
 
 import org.eclipse.core.runtime.ILog;
@@ -74,8 +75,8 @@ public class Activator extends AbstractUIPlugin {
 	public void execCommand(String command, String filePath) {
 		try {
 			command = MessageFormat.format(command, new Object[] { filePath });
-			Activator.log(Status.OK, "running: " + command, null);
-			Runtime.getRuntime().exec(command);
+			Activator.log(Status.OK, "running: " + command + " filePath=" + filePath, null);
+			Runtime.getRuntime().exec(command, null, new File(filePath));
 		} catch (Throwable t) {
 			Activator.log(Status.INFO, "Unable to handle the path", null);
 		}
