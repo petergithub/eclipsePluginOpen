@@ -16,10 +16,10 @@
                menubarPath="org.pu.open.menu/group_open"
                tooltip="Open shell in this folder">
          </action>
-         <action id="org.pu.open.openMINGW32" class="org.pu.open.actions.OpenMingw32Action"
+         <action id="org.pu.open.openMINGW32" class="org.pu.open.actions.OpenGitShellAction"
                enablesFor="1"
-               icon="icon/shell.gif"
-               label="Open Mingw32"
+               icon="icon/git.png"
+               label="Open Git Shell"
                menubarPath="org.pu.open.menu/group_open"
                tooltip="Open Mingw32 in this folder">
          </action>
