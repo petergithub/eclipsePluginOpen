@@ -24,6 +24,7 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
 		store.setDefault(Constants.P_OPEN_FOLDER, getOpenFolderCommand());
 		store.setDefault(Constants.P_OPEN_FILE, getOpenFileCommand());
 		store.setDefault(Constants.P_OPEN_SHELL, getOpenShellCommand());
+		store.setDefault(Constants.P_OPEN_MINGW32, getOpenMINGW32Command());
 	}
 
 	private String getOpenFileCommand() {
@@ -60,6 +61,19 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
 			return Constants.OPEN_SHELL_WINDOWS;
 		}
 
+		return "unknown";
+	}
+	
+	private String getOpenMINGW32Command() {
+		if (Platform.OS_LINUX.equals(Platform.getOS())) {
+			if (new File("/usr/bin/gnome-terminal").exists()) {
+				return Constants.OPEN_SHELL_LINUX_GNOME;
+			}
+			
+		} else if (Platform.OS_WIN32.equals(Platform.getOS())) {
+			return Constants.OPEN_MINGW32_WINDOWS;
+		}
+		
 		return "unknown";
 	}
 }

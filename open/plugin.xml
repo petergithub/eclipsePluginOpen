@@ -16,6 +16,13 @@
                menubarPath="org.pu.open.menu/group_open"
                tooltip="Open shell in this folder">
          </action>
+         <action id="org.pu.open.openMINGW32" class="org.pu.open.actions.OpenMingw32Action"
+               enablesFor="1"
+               icon="icon/shell.gif"
+               label="Open Mingw32"
+               menubarPath="org.pu.open.menu/group_open"
+               tooltip="Open Mingw32 in this folder">
+         </action>
          <action id="org.pu.open.openClassFolder" class="org.pu.open.actions.OpenClassAction"
                enablesFor="1"
                icon="icon/jar.gif"
