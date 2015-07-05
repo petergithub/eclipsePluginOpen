@@ -3,41 +3,47 @@
 <plugin>
    <extension point="org.eclipse.ui.popupMenus">
       <objectContribution id="org.pu.open.contribution" objectClass="org.eclipse.core.runtime.IAdaptable">
-         <menu label="Open"
-               path="additions"
-               icon="icon/easyexplore.gif"
-               id="org.pu.open.menu">
+         <menu id="org.pu.open.menu" path="additions" label="Open" icon="icon/easyexplore.gif">
             <separator name="group_open" />
          </menu>
+         <action id="org.pu.open.openGitShell" class="org.pu.open.actions.OpenGitShellAction"
+               enablesFor="1" icon="icon/git.png" label="Open Git Shell"
+               menubarPath="org.pu.open.menu/group_open"
+               tooltip="Open Git Bash in this folder">
+         </action>
          <action id="org.pu.open.openCommand" class="org.pu.open.actions.OpenShellAction"
-               enablesFor="1"
-               icon="icon/shell.gif"
-               label="Open Shell"
+               enablesFor="1" icon="icon/shell.gif" label="Open Shell"
                menubarPath="org.pu.open.menu/group_open"
                tooltip="Open shell in this folder">
          </action>
-         <action id="org.pu.open.openMINGW32" class="org.pu.open.actions.OpenGitShellAction"
-               enablesFor="1"
-               icon="icon/git.png"
-               label="Open Git Shell"
-               menubarPath="org.pu.open.menu/group_open"
-               tooltip="Open Mingw32 in this folder">
-         </action>
          <action id="org.pu.open.openClassFolder" class="org.pu.open.actions.OpenClassAction"
-               enablesFor="1"
-               icon="icon/jar.gif"
-               label="Open Class Folder"
+               enablesFor="1" icon="icon/jar.gif" label="Open Class Folder"
                menubarPath="org.pu.open.menu/group_open"
                tooltip="Open class folder in this folder">
          </action>
          <action id="org.pu.open.openFolder"  class="org.pu.open.actions.OpenAction"
-               enablesFor="1"
-               icon="icon/easyexplore.gif"
-               label="Open Folder"
+               enablesFor="1" icon="icon/easyexplore.gif" label="Open Folder"
                menubarPath="additions"
                tooltip="Open explorer in this folder">
          </action>
       </objectContribution>
+   </extension>
+   <extension point="org.eclipse.ui.actionSets">
+      <actionSet id="open.actionSet" label="Sample Action Set" visible="true" >
+         <menu id="openMenu" label="Open">
+            <separator name="openGroup" />
+         </menu>
+         <action id="org.pu.open.openFolder"  class="org.pu.open.actions.OpenAction"
+               enablesFor="1" icon="icon/easyexplore.gif" label="Open Folder"
+               menubarPath="openMenu/openGroup" toolbarPath="openGroup"
+               tooltip="Open explorer in this folder">
+         </action>
+         <action id="org.pu.open.openGitShell" class="org.pu.open.actions.OpenGitShellAction"
+               enablesFor="1" icon="icon/git.png" label="Open Git Shell"
+               menubarPath="openMenu/openGroup" toolbarPath="openGroup"
+               tooltip="Open Git Bash in this folder">
+         </action>
+      </actionSet>
    </extension>
    <extension point="org.eclipse.ui.preferencePages">
       <page class="org.pu.open.preferences.OpenPreferencePage"

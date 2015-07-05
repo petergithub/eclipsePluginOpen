@@ -1,6 +1,5 @@
 package org.pu.open;
 
-import java.io.File;
 import java.text.MessageFormat;
 
 import org.eclipse.core.runtime.ILog;
@@ -33,8 +32,7 @@ public class Activator extends AbstractUIPlugin {
 	}
 
 	/**
-	 * Returns an image descriptor for the image file at the given plug-in
-	 * relative path
+	 * Returns an image descriptor for the image file at the given plug-in relative path
 	 * 
 	 * @param path the path
 	 * @return the image descriptor
@@ -45,9 +43,7 @@ public class Activator extends AbstractUIPlugin {
 
 	/*
 	 * (non-Javadoc)
-	 * @see
-	 * org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext
-	 * )
+	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext )
 	 */
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
@@ -56,9 +52,7 @@ public class Activator extends AbstractUIPlugin {
 
 	/*
 	 * (non-Javadoc)
-	 * @see
-	 * org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext
-	 * )
+	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext )
 	 */
 	public void stop(BundleContext context) throws Exception {
 		plugin = null;
@@ -74,9 +68,10 @@ public class Activator extends AbstractUIPlugin {
 
 	public void execCommand(String command, String filePath) {
 		try {
-			command = MessageFormat.format(command, new Object[] { filePath });
-			Activator.log(Status.OK, "running: " + command + " filePath=" + filePath, null);
-			Runtime.getRuntime().exec(command, null, new File(filePath));
+			command = MessageFormat.format(command, filePath);
+			String msg = MessageFormat.format("running:{0}, filePath={1}", command, filePath);
+			Activator.log(Status.OK, msg, null);
+			Runtime.getRuntime().exec(command, null, null);
 		} catch (Throwable t) {
 			Activator.log(Status.INFO, "Unable to handle the path", null);
 		}
