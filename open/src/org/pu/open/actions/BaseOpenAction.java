@@ -21,17 +21,26 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.IWorkbenchWindow;
+import org.eclipse.ui.IWorkbenchWindowActionDelegate;
 import org.eclipse.ui.PlatformUI;
 import org.pu.open.Activator;
 
 @SuppressWarnings("restriction")
-public abstract class BaseOpenAction implements IObjectActionDelegate {
+public abstract class BaseOpenAction implements IObjectActionDelegate, IWorkbenchWindowActionDelegate {
 	private ISelection selection;
 	protected Object selectedObject;
 	protected IJavaProject selectedProject;
+	@SuppressWarnings("unused")
+	private IWorkbenchWindow window;
 	
 	abstract public void runAction(IAction action, File file);
 
+	/**
+	 * The action has been activated. The argument of the
+	 * method represents the 'real' action sitting
+	 * in the workbench UI.
+	 * @see IWorkbenchWindowActionDelegate#run
+	 */
 	public void run(IAction action) {
 		selectedObject = getSelectedObject(selection);
 		File file = getSelectedFolder(selectedObject);
@@ -101,11 +110,35 @@ public abstract class BaseOpenAction implements IObjectActionDelegate {
 		return selected;
 	}
 
+	public void setActivePart(IAction action, IWorkbenchPart targetPart) {
+	}
+
+	/**
+	 * Selection in the workbench has been changed. We 
+	 * can change the state of the 'real' action here
+	 * if we want, but this can only happen after 
+	 * the delegate has been created.
+	 * @see IWorkbenchWindowActionDelegate#selectionChanged
+	 */
 	public void selectionChanged(IAction action, ISelection selection) {
 	      this.selection = selection;
 	}
 
-	public void setActivePart(IAction action, IWorkbenchPart targetPart) {
+	/**
+	 * We can use this method to dispose of any system
+	 * resources we previously allocated.
+	 * @see IWorkbenchWindowActionDelegate#dispose
+	 */
+	public void dispose() {
+	}
+
+	/**
+	 * We will cache window object in order to
+	 * be able to provide parent shell for the message dialog.
+	 * @see IWorkbenchWindowActionDelegate#init
+	 */
+	public void init(IWorkbenchWindow window) {
+		this.window = window;
 	}
 
 	/**
