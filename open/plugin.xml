@@ -38,6 +38,11 @@
                menubarPath="openMenu/openGroup" toolbarPath="openGroup"
                tooltip="Open explorer in this folder">
          </action>
+         <action id="org.pu.open.openCommand" class="org.pu.open.actions.OpenShellAction"
+               enablesFor="1" icon="icon/shell.gif" label="Open Shell"
+               menubarPath="org.pu.open.menu/group_open" toolbarPath="openGroup"
+               tooltip="Open shell in this folder">
+         </action>
          <action id="org.pu.open.openGitShell" class="org.pu.open.actions.OpenGitShellAction"
                enablesFor="1" icon="icon/git.png" label="Open Git Shell"
                menubarPath="openMenu/openGroup" toolbarPath="openGroup"
