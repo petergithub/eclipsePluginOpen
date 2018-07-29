@@ -42,4 +42,7 @@ public class Constants {
 	 * konsole" and "terminal"
 	 */
 	public static final String OPEN_SHELL_LINUX_KDE = "konsole " + PATH_VAR;
+	
+    public static final String OPEN_FILE_MAC = "open -a Finder " + PATH_VAR;
+    public static final String OPEN_SHELL_MAC = "open -a iTerm " + PATH_VAR;
 }
