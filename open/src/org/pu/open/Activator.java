@@ -73,7 +73,7 @@ public class Activator extends AbstractUIPlugin {
 			Activator.log(Status.OK, msg, null);
 			Runtime.getRuntime().exec(command, null, null);
 		} catch (Throwable t) {
-			Activator.log(Status.INFO, "Unable to handle the path", null);
+			Activator.log(Status.WARNING, "Unable to handle the path " + filePath, t);
 		}
 	}
 
