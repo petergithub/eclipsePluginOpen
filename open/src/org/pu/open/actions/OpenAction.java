@@ -17,6 +17,9 @@ public class OpenAction extends BaseOpenAction {
 		} else {
 			command = plugin.getPreferenceStore().getString(Constants.P_OPEN_FILE);
 		}
+		//TODO Not open finder window having space in path
+//		https://stackoverflow.com/questions/43783824/java-not-able-to-open-finder-window-having-space-in-path
+		
 		plugin.execCommand(command, file.getAbsolutePath());
 	}
 }
